@@ -1,0 +1,3 @@
+RESCALE_SLOPE_NAME = "RescaleSlope"
+RESCALE_INTERCEPT_NAME = "RescaleIntercept"
+DOSE_GRID_SCALING_NAME = "DoseGridScaling"
