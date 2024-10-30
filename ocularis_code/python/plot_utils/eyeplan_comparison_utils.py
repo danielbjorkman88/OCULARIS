@@ -1108,6 +1108,35 @@ def doseplane_structures(algo, ep_model, path = ""):
     
     plt.ylim(-20,20)
     
+    
+        ax = fig.add_subplot(224)
+    
+    dose_fractions = np.linspace(0, 1, 1000)
+    
+    # legend_handles = [plt.Line2D([0], [0], color='k'),plt.Line2D([0], [0], color='k', linestyle='--')]
+    # legend_labels = ['Dose Engine','Eyeplan']
+    for structure_name, color in zip(["eyeglobe", "lens", "cornea", "target", "macula"], color_utils.my_colors):
+            
+        struct = ep_model.structure_set_clips_registered[structure_name]
+        struct.resample_contour_points_in_grid(1)
+            
+        dvh = DVH(algo.dose, struct.binary_mask)
+        volumes = dvh.V(dose_fractions)    
+        
+        plt.plot(dose_fractions*100, volumes*100,
+                  label=structure_name.capitalize(), color=color)
+        
+        # legend_handles.append(plt.Line2D([0], [0], color=color))
+        # legend_labels.append(structure_name.capitalize())
+
+
+      
+    plt.legend( loc='lower left', fontsize='x-small')
+    ax.set_xlabel('Dose [% of prescribed dose]')
+    ax.set_ylabel('Volume [% of structure volume]')
+    ax.set_title('DVH', size='x-large')
+    
+    
     plt.suptitle(f'Dose for P{ep_model.patient_config["patient_number"]}')
     xlength = 12
     fig.set_size_inches(xlength, xlength/1.61)
