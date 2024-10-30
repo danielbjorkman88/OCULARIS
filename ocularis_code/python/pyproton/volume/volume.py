@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Sep 27 11:00:36 2021
+This file is part of the OCULARIS Ocular Proton Therapy Treatment Planning System. 
+It is subject to the license terms in the LICENSE file located in the top-level directory of this distribution.
 
-@author: bjoerk_c
+This program is not certified for clinical use and is provided WITHOUT ANY WARRANTY or implied warranty.
+For accuracy, users should validate OCULARIS independently before drawing any conclusions.
+
 """
+
+
 from pyproton.volume.grid import Grid
 import numpy as np
 from pyproton.utils.constants import PKL_FILE_EXTENSION
