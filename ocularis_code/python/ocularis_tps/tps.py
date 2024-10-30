@@ -72,12 +72,12 @@ class OCULARIS:
         return self._dataframe
             
     
-    def load_patient(basedir, patient_identifier, anterior_aligned = False, wider = False):
+    def load_patient(basedir, patient_identifier):
         
         if type(patient_identifier) == int:
             patient_identifier = "P" + str(patient_identifier)
         
-        return parser_database(basedir, patient_identifier, anterior_aligned, wider)
+        return parser_database(basedir, patient_identifier)
         #return database(patient_identifier)
 
 

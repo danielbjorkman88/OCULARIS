@@ -17,7 +17,7 @@ from ocularis_tps.patient import Patient
 import numpy as np
 
 
-def parser_database(path , patient_id, anterior_aligned = False, wider = False):
+def parser_database(path , patient_id):
     
     patient_path = path / patient_id
     
@@ -57,11 +57,12 @@ def parser_database(path , patient_id, anterior_aligned = False, wider = False):
     config3["patient_id"] = patient_id
     config3["patient_number"] = int(patient_id[1:])
     
-    if wider:
-        config3["Nvoxels"] =  [dose_engine_config["Nvoxels"][0]*2, dose_engine_config["Nvoxels"][1]*2, dose_engine_config["Nvoxels"][2]] 
-        print("Initializing a wider mesh")
-    else:
-        config3["Nvoxels"] = dose_engine_config["Nvoxels"]
+    # if wider:
+    config3["Nvoxels"] =  [dose_engine_config["Nvoxels"][0]*2, dose_engine_config["Nvoxels"][1]*2, dose_engine_config["Nvoxels"][2]] 
+    print("Initializing a wider mesh")
+    # else:
+    #     config3["Nvoxels"] = dose_engine_config["Nvoxels"]
+        
     config3["Image"] = dose_engine_config["Image"]
     config3["Slice"] = dose_engine_config["Slice"]
     config3["proximal_margin"] = dose_engine_config["proximal_margin"]
@@ -101,10 +102,12 @@ def parser_database(path , patient_id, anterior_aligned = False, wider = False):
 
     config3['Target_range'] = target_radiological_depth + ep_model.distal_margin
     config3['Modulation_range'] = target_modulation + ep_model.proximal_margin
-    if wider:
-        config3["Mesh dimensions"] = [ep_model.doseplane_h.mesh_dimensions[0]*2, ep_model.doseplane_h.mesh_dimensions[1]*2, ep_model.doseplane_h.mesh_dimensions[2] ]
-    else:
-        config3["Mesh dimensions"] = ep_model.doseplane_h.mesh_dimensions
+    # if wider:
+    config3["Nvoxels"] =  [dose_engine_config["Nvoxels"][0]*2, dose_engine_config["Nvoxels"][1]*2, dose_engine_config["Nvoxels"][2]] 
+    print("Initializing a wide mesh")
+    # else:
+    #     config3["Nvoxels"] = dose_engine_config["Nvoxels"]
+        
     config3["skin_plane_normal"] = np.asarray([0, 0, 1])
     config3["skin_plane_point"] = np.asarray([0, 0, skin_plane_z])
     
@@ -134,10 +137,10 @@ def parser_database(path , patient_id, anterior_aligned = False, wider = False):
     
     assert len(config3["surfaces"]) > 1
     
-    if anterior_aligned:
-        config3["anterior_aligned"] = True
-    else:
-        config3["anterior_aligned"] = False
+    # if anterior_aligned:
+    config3["anterior_aligned"] = True
+    # else:
+    #     config3["anterior_aligned"] = False
     
     
     #Grid is defined here

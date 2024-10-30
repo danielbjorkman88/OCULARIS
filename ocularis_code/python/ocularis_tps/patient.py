@@ -135,19 +135,19 @@ class Patient:
         # translation_y = 0
 
         
-        if self._dose_engine_config["anterior_aligned"]:
-            # # Aligns mesh with anterior segment of eyeglobe + 0.5 mm
-            # z_alignment = np.max(ep_model.structure_set_clips_registered["eyeglobe"].contour_coordinates[0:,2]) + 0.5
-            
-            n_voxels_front_of_skinplane = self.n_voxels_front_of_skinplane #int(np.ceil(3/ep_model.doseplane_h.resolution[2]))
-            z_alignment = self._dose_engine_config['skin_plane_point'][2] + n_voxels_front_of_skinplane*ep_model.doseplane_h.resolution[2]
-            
-            
-            print(f"Optis_tps.patient: Mesh aligned to {n_voxels_front_of_skinplane*ep_model.doseplane_h.resolution[2]} mm in front of skin plane")
-        else:
-            # Aligns mesh with skin plane
-            z_alignment = self._dose_engine_config["skin_plane_point"][2]
-            print("Optis_tps: Mesh aligned to skin plane")
+        # if self._dose_engine_config["anterior_aligned"]:
+        # # Aligns mesh with anterior segment of eyeglobe + 0.5 mm
+        # z_alignment = np.max(ep_model.structure_set_clips_registered["eyeglobe"].contour_coordinates[0:,2]) + 0.5
+        
+        n_voxels_front_of_skinplane = self.n_voxels_front_of_skinplane #int(np.ceil(3/ep_model.doseplane_h.resolution[2]))
+        z_alignment = self._dose_engine_config['skin_plane_point'][2] + n_voxels_front_of_skinplane*ep_model.doseplane_h.resolution[2]
+        
+        
+        print(f"Optis_tps.patient: Mesh aligned to {n_voxels_front_of_skinplane*ep_model.doseplane_h.resolution[2]} mm in front of skin plane")
+        # else:
+        #     # Aligns mesh with skin plane
+        #     z_alignment = self._dose_engine_config["skin_plane_point"][2]
+        #     print("Optis_tps: Mesh aligned to skin plane")
             
             
         translation_vector = np.zeros(3)
