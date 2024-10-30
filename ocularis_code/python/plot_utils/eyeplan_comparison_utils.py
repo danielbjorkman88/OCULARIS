@@ -1109,7 +1109,7 @@ def doseplane_structures(algo, ep_model, path = ""):
     plt.ylim(-20,20)
     
     
-        ax = fig.add_subplot(224)
+    ax = fig.add_subplot(224)
     
     dose_fractions = np.linspace(0, 1, 1000)
     
