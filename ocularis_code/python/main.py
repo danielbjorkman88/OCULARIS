@@ -63,7 +63,7 @@ if __name__ == "__main__":
         collimator_comparison(algo, ep_model)
         one_dimensional_eyeplan_comparison(algo, ep_model)
         
-        structure_dose = doseplane_structures(algo, ep_model)
+        doseplane_structures(algo, ep_model)
         
         
         

@@ -13,30 +13,23 @@ import dose_engine
 
 
 
-def generate_reference(data, config, ep_model, simple = False):
+def generate_reference(basedata, config, ep_model, simple = False):
 
     
     assert type(simple) == bool
     
-    algo = dose_engine.BroadBeam(data, config)
+    algo = dose_engine.BroadBeam(basedata, config)
     
     
-    if config["anterior_aligned"]:
-        # # Aligns mesh with anterior segment of eyeglobe + 0.5 mm
-        # z_alignment = np.max(ep_model.structure_set_clips_registered["eyeglobe"].contour_coordinates[0:,2]) + 0.5
-        
+
    
-        n_voxels_front_of_skinplane = config["n_voxels_front_of_skinplane"] #int(np.ceil(3/ep_model.doseplane_h.resolution[2]))
-        z_alignment = algo.config['skin_plane_point'][2] + n_voxels_front_of_skinplane*ep_model.doseplane_h.resolution[2]
-        
-        config["n_voxels_front_of_skinplane"] = n_voxels_front_of_skinplane
-        
-        print(f"Dose_engine: Mesh aligned to {n_voxels_front_of_skinplane*ep_model.doseplane_h.resolution[2]} mm in front of skin plane")
-        # print("Dose_engine: Mesh aligned to 2.5 mm in front of skin plane")
-    else:
-        # Aligns mesh with skin plane
-        z_alignment = algo.config["skin_plane_point"][2]
-        print("Dose_engine: Mesh aligned to skin plane")
+    n_voxels_front_of_skinplane = config["n_voxels_front_of_skinplane"] #int(np.ceil(3/ep_model.doseplane_h.resolution[2]))
+    z_alignment = algo.config['skin_plane_point'][2] + n_voxels_front_of_skinplane*ep_model.doseplane_h.resolution[2]
+    
+    config["n_voxels_front_of_skinplane"] = n_voxels_front_of_skinplane
+    
+    print(f"Dose_engine: Mesh aligned to {n_voxels_front_of_skinplane*ep_model.doseplane_h.resolution[2]} mm in front of skin plane")
+
     
     
     translation_vector = np.zeros(3)
@@ -53,6 +46,7 @@ def generate_reference(data, config, ep_model, simple = False):
         print("Generated simplified dose engine instance")
         return algo
     
+    # Needed to assign dose to structures upstream of skin plane
     if config["anterior_aligned"]:
         struct = ep_model.structure_set_clips_registered["eyeglobe"]
         struct.resample_contour_points_in_grid(1)        
