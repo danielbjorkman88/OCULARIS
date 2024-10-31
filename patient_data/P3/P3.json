@@ -1,0 +1,21 @@
+{
+  "patient_config": {
+    "patient_number": "P3",
+    "dose horizontal filename": "P3_dose_eyeplan.csv",
+    "eyeplan ptd filename": "P3.ptd",
+    "eyeplan mil filename": "P3.mil",
+    "clip transformation": "P3_clips_transformation.csv",
+    "fractions": [1, 2, 3, 4],
+	"skinplane_to_anterior_distance": 2
+  },
+   "dose_engine_config": {
+	  "Nvoxels": [60, 60, 60],
+	  "Image": "3D" ,
+	  "Slice": [29, 29, 29],
+	  "proximal_margin": 2.5,
+	  "distal_margin": 2.5,
+	  "wedge_insert_angle": 57,
+	  "wedge_cover": 15.4, 
+	  "wedge_angle": 30
+   }
+}

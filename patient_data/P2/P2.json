@@ -1,0 +1,18 @@
+{
+  "patient_config": {
+    "patient_number": "2",
+    "dose horizontal filename": "P2_dose_eyeplan.csv",
+    "eyeplan ptd filename": "P2.ptd",
+    "eyeplan mil filename": "P2.mil",
+    "clip transformation": "P2_clips_transformation.csv",
+    "fractions": [1, 2, 3],
+	"skinplane_to_anterior_distance": 2
+  },
+   "dose_engine_config": {
+	  "Nvoxels": [60, 60, 60],
+	  "Image": "3D" ,
+	  "Slice": [29, 29, 26],
+	  "proximal_margin": 3,
+	  "distal_margin": 2.5 
+   }
+}
