@@ -1,3 +1,9 @@
+
+OCULARIS (OCULar proton therApy Research Integrated dose calculation System ), the Python research scripting tool for Ocular Proton Therapy.
+
+
+
+
 Dependencies:
 Pyvista / VTK: https://docs.pyvista.org/version/stable/getting-started/installation.html
 Visual studios installed
